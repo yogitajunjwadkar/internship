@@ -1,0 +1,170 @@
+package com.client;
+import java.util.Scanner;
+
+import com.model.Vehicle;
+import com.service.Rto;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		Rto pune=new Rto();
+		Vehicle v=null;
+		
+		while(true) {
+			System.out.println("*****************Welcome to AutoRegistry*****************");
+			System.out.println("1.Registe your vehicle\n2.View details\n3.Update details\n4.EXit");
+			System.out.println("What is your choice?");
+			int ch=s.nextInt();
+			
+			switch(ch) {
+			case 1:
+				v= pune.regVehicle();
+				System.out.println("Registeration successfull.........1");
+				break;
+				
+			case 2:
+				pune.viewDetails(v);
+				break;
+			case 3:
+				v= pune.updateVehicle(v);
+				System.out.println("update successfull..........");
+				break;
+			case 4:
+				System.out.println("Logged out........");
+				System.exit(0);
+				break;
+				
+				default:
+					System.out.println("Wrong choice code");
+					break;
+			}
+		}
+	}
+
+}
+----------------------------------------------------------------------------------------------------------
+package com.model;
+
+public class Vehicle {
+
+	
+		public int regId;
+	    public String ownerName;
+	    public String modelName;
+	    public String area;
+	    public String colour;
+	    public int price;
+	    public long mobNo;
+	    public long adharNo;
+	    public Vehicle(int regId,String ownerName, String modelName, String area, String colour, int price, long mobNo, long adharNo)
+	    {
+	    	 this.regId = regId;
+	         this.ownerName =ownerName;
+	         this.modelName = modelName;
+	         this.area = area;
+	         this.colour = colour;
+	         this.price = price;
+	         this.mobNo = mobNo;
+	         this.adharNo = adharNo;
+	    
+	    }
+
+	
+		
+	}
+----------------------------------------------------------------------------------------------------------------------
+package com.service;
+import java.util.Scanner;
+import com.model.Vehicle;
+
+public class Rto {
+
+	
+		Scanner s=new Scanner(System.in);
+		public Vehicle regVehicle()
+		{
+			 System.out.print("Enter regid: ");
+		     int regid = s.nextInt();
+		     System.out.print("Enter owner name: ");
+		     String ownername = s.next()+s.nextLine();
+		     System.out.print("Enter model name: ");
+		     String modelname =s.next()+s.nextLine();
+		     System.out.print("Enter area: ");
+		     String area = s.next()+s.nextLine();
+		     System.out.print("Enter colour: ");
+		     String colour = s.next()+s.nextLine();
+		     System.out.print("Enter price: ");
+		     int price = s.nextInt();
+		     System.out.print("Enter mobNo: ");
+		     long mobNo = s.nextLong();
+		     System.out.print("Enter adhraNo: ");
+		     long adharNo = s.nextLong();
+		     Vehicle v1=new Vehicle(regid, ownername, modelname, area, colour, price, mobNo, adharNo);
+		     return v1;
+		}
+		
+		public void viewDetails(Vehicle v)
+		{
+			System.out.println("--------------------------Your Details-------------------------------");
+			System.out.print("\nRegistration id:"+v.regId);
+		    System.out.print("\nowner Name:"+v.ownerName);
+		    System.out.print("\nmodel Name:"+v.modelName);
+		    System.out.print("\narea:"+v.area);
+		    System.out.print("\ncolour:"+v.colour);
+		    System.out.print("\nprice:"+v.price);
+		    System.out.print("\nmobNo:"+v.mobNo);
+		    System.out.print("\nadhraNo:"+v.adharNo);
+		    
+		}
+		
+		public Vehicle updateVehicle(Vehicle v) 
+		{
+			
+			System.out.println("1.  update regid\n2.  update owner name\n3. update model name\n4. update area\n5. update colour\n6. update price\n7. update mobNo\n8. update adharno");
+			System.out.println("What is your choice?");
+			int ch=s.nextInt();
+			switch(ch)
+			{
+			case 1:
+				System.out.println(" Enter new regid:  ");
+				v.regId = s.nextInt();
+				break;
+			case 2:
+				System.out.println(" Enter new owner name");
+				  v.ownerName = s.next()+s.nextLine();
+				break;
+			case 3:
+				System.out.println(" Enter new model name:  ");
+				 v.modelName =s.next()+s.nextLine();
+				break;
+			case 4:
+				System.out.println(" Enter new area:  ");
+				v.area = s.next()+s.nextLine();
+				break;
+			case 5:
+				System.out.println(" Enter new color:  ");
+				v.colour = s.next()+s.nextLine();
+				break;
+			case 6:
+				System.out.println(" Enter new price:  ");
+			 v.price = s.nextInt();
+				break;
+			case 7:
+				System.out.println(" Enter new mobile no:  ");
+				v.mobNo = s.nextLong();
+				break;
+			case 8:
+				System.out.println(" Enter new adhar no:  ");
+				v.adharNo = s.nextLong();
+				
+				
+			}
+			return v;
+			
+			
+			
+			
+		}
+		
+	}
